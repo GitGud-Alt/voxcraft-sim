@@ -6,6 +6,7 @@ release
 workspace
 a.history
 core
+.vscode
 
 # Prerequisites
 *.d
@@ -43,3 +44,15 @@ build/
 
 # IDEs
 *.idea
+
+# Additional
+cmake_install.cmake
+CMakeCache.txt
+detect_cuda_compute_capabilities.cu
+Makefile
+voxcraft-sim
+vx3_node_daemon
+vx3_node_worker
+vx3_test
+CMakeFiles
+CMakeFiles/*
