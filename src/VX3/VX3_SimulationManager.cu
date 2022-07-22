@@ -451,7 +451,7 @@ void VX3_SimulationManager::startKernel(int num_simulation, int device_index) {
     // VcudaMemcpy(result_voxelyze_kernel, d_voxelyze_3s[device_index],
     //             num_simulation * sizeof(VX3_VoxelyzeKernel),
     //             cudaMemcpyDeviceToHost);
-    //enlargeGPUHeapSize();
+    enlargeGPUHeapSize();
     //enlargeGPUPrintfFIFOSize();
 
     // MODIFICATIONS START
