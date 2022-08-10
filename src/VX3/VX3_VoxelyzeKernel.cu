@@ -548,6 +548,8 @@ __device__ void VX3_VoxelyzeKernel::computeTargetCloseness() {
         return;
     double R = MaxDistInVoxelLengthsToCountAsPair * voxSize;
     double ret = 0;
+    double avgTargetDist = 0;
+    double iniTargetDist = 0;
     numClosePairs = 0;
     for (int i = 0; i < d_targets.size(); i++) {
         for (int j = i + 1; j < d_targets.size(); j++) {
@@ -557,9 +559,13 @@ __device__ void VX3_VoxelyzeKernel::computeTargetCloseness() {
             }
             ret += 1 / distance;
         }
+        avgTargetDist += (currentCenterOfMass - d_targets[i]->pos).Length();
+        iniTargetDist += (initialCenterOfMass - d_targets[i]->pos).Length();
     }
-    targetCloseness = ret;
-    // printf("targetCloseness: %f\n", targetCloseness);
+    //targetCloseness = ret;
+    avgTargetDist = avgTargetDist / d_targets.size();
+    iniTargetDist = iniTargetDist / d_targets.size();
+    targetCloseness = ((iniTargetDist - avgTargetDist) / iniTargetDist) * 100;
 }
 
 /* Sub GPU Threads */
