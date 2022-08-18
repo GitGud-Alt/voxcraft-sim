@@ -282,6 +282,7 @@ class VX3_Voxel {
 
     voxState boolStates; // single int to store many boolean state values as bit flags according to
 
+    float tempb;
     float tempe; // 0 is no expansion
 
     VX3_Vec3D<float> pStrain;   // cached poissons strain

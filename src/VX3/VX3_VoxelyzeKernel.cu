@@ -313,7 +313,7 @@ __device__ bool VX3_VoxelyzeKernel::doTimeStep(float dt) {
 
     int CycleStep =
         int(TempPeriod / dt); // Sample at the same time point in the cycle, to avoid the impact of actuation as much as possible.
-    if (CurStepCount % CycleStep == 0) {
+    if (CurStepCount % CycleStep == 0 || TempPeriod == 0) {
         angleSampleTimes++;
 
         currentCenterOfMass_history[0] = currentCenterOfMass_history[1];

@@ -13,6 +13,7 @@ VX3_Voxel::VX3_Voxel(CVX_Voxel *p, VX3_VoxelyzeKernel *k)
       previousDt(p->previousDt), phaseOffset(p->phaseOffset), isDetached(p->isDetached), baseCiliaForce(p->baseCiliaForce),
       shiftCiliaForce(p->shiftCiliaForce) {
     _voxel = p;
+    tempb=tempe;
 
     for (int i = 0; i < k->num_d_voxelMats; i++) {
         if (k->h_voxelMats[i] == p->mat) {
@@ -273,6 +274,7 @@ __device__ void VX3_Voxel::timeStep(double dt, double currentTime, VX3_VoxelyzeK
         propagateSignal(currentTime);
         packMaker(currentTime);
         localSignalDecay(currentTime);
+        setTemperature(tempb + (localSignal));
     }
 }
 
